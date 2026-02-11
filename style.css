@@ -8,11 +8,12 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    /* Основной шрифт теперь Exo 2 — технологичный и читаемый */
+    font-family: 'Exo 2', sans-serif; 
     line-height: 1.6;
     color: #333;
     
-    /* Текстурный фон страницы */
+    /* Текстурный фон */
     background-color: #f4f4f4;
     background-image: url('images/bg.jpg'); 
     background-repeat: repeat;
@@ -30,13 +31,15 @@ body {
    2. ШАПКА (HEADER)
    ======================== */
 .header {
-    background: #2c3e50; 
+    background: rgba(44, 62, 80, 0.95); /* Полупрозрачный темно-синий */
+    backdrop-filter: blur(10px); /* Размытие фона под меню */
     color: #fff;
     padding: 1rem 0;
     position: sticky; 
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* Тонкая линия снизу */
 }
 
 .header .container {
@@ -47,9 +50,13 @@ body {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+    /* Логотип делаем шрифтом Orbitron для стиля */
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900; /* Самый жирный */
     color: #2ecc71;
+    letter-spacing: 1px; /* Чуть раздвинем буквы */
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.4); /* Легкое свечение */
 }
 
 .nav a, .lang-switch a {
@@ -57,23 +64,21 @@ body {
     text-decoration: none;
     margin-left: 15px;
     transition: color 0.3s;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase; /* Все буквы заглавные */
+    letter-spacing: 0.5px;
 }
 
 .nav a:hover, .lang-switch a:hover {
     color: #2ecc71;
+    text-shadow: 0 0 5px rgba(46, 204, 113, 0.6);
 }
 
-/* Подсветка активной страницы */
 .nav a.current {
     color: #2ecc71;
     border-bottom: 2px solid #2ecc71;
     padding-bottom: 5px;
-}
-
-.lang-switch {
-    font-size: 0.9rem;
-    margin-left: 20px;
 }
 
 .lang-switch .active {
@@ -88,12 +93,11 @@ body {
 .hero {
     position: relative;
     height: 80vh;
-    /* --- НАСТРОЙКА ФОНА ДЛЯ ПК --- */
-    background-image: url('images/hero-desktop.webp'); /* Картинка для десктопа */
+    background-image: url('images/hero-desktop.webp'); 
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover; /* Растягивать на весь экран */
-    background-color: #333; /* Цвет, если картинка не прогрузилась */
+    background-size: cover;
+    background-color: #333;
     
     display: flex;
     align-items: center;
@@ -107,7 +111,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Затемнение: меняй 0.5 на 0.7, если текст плохо видно */
+    /* Градиентное затемнение: сверху темнее, чтобы меню читалось */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%);
 }
 
 .hero-content {
@@ -116,17 +121,21 @@ body {
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-family: 'Orbitron', sans-serif; /* Хайтек заголовок */
+    font-size: 3.5rem;
     margin-bottom: 1rem;
-    line-height: 1.2;
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Тень для читаемости */
 }
 
 .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    max-width: 700px;
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    font-weight: 300;
 }
 
 /* Кнопка */
@@ -134,31 +143,44 @@ body {
     display: inline-block;
     background: #2ecc71;
     color: #fff;
-    padding: 12px 30px;
-    border-radius: 5px;
+    padding: 15px 35px;
+    border-radius: 50px; /* Круглые края */
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1rem;
-    transition: background 0.3s ease, transform 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4); /* Зеленое свечение */
+    font-family: 'Exo 2', sans-serif;
 }
 
 .btn:hover {
     background: #27ae60;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
 }
 
 /* ========================
-   4. БЕЛЫЕ КАРТОЧКИ (ПОДЛОЖКА)
+   4. GLASSMORPHISM (СТЕКЛЯННЫЕ КАРТОЧКИ)
    ======================== */
 .services .container, 
 .portfolio .container, 
 .footer .container {
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    margin-top: 2rem;    
-    margin-bottom: 2rem; 
+    /* Эффект матового стекла */
+    background-color: rgba(255, 255, 255, 0.85); /* Белый, 85% непрозрачности */
+    backdrop-filter: blur(12px); /* Размытие фона под карточкой */
+    -webkit-backdrop-filter: blur(12px); /* Для Safari */
+    
+    padding: 3rem;
+    border-radius: 15px;
+    
+    /* Тонкая белая рамка для эффекта стекла */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Мягкая тень */
+    margin-top: 3rem;    
+    margin-bottom: 3rem; 
 }
 
 /* ========================
@@ -168,60 +190,80 @@ body {
 
 .section-title {
     text-align: center;
+    font-family: 'Orbitron', sans-serif; /* Хайтек заголовок */
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     color: #2c3e50;
     position: relative;
+    letter-spacing: 1px;
 }
 
 .section-title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 80px;
     height: 4px;
     background: #2ecc71;
-    margin: 10px auto 0;
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
 /* Сетки */
-.services-grid {
+.services-grid, .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 2rem;
 }
 
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-/* Карточки */
+/* Карточки внутри секций */
 .service-card, .project-card {
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
-.service-card { padding: 2rem; text-align: center; border: 1px solid #eee; }
+.service-card { padding: 2rem; text-align: center; }
 .project-card { border: none; }
 
-.service-card:hover, .project-card:hover { transform: translateY(-5px); }
-.service-card:hover { border-color: #2ecc71; }
+.service-card:hover, .project-card:hover { 
+    transform: translateY(-7px); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
 
-.icon { font-size: 3rem; margin-bottom: 1rem; }
-.service-card h3, .project-info h3 { margin-bottom: 0.5rem; color: #2c3e50; }
-.service-card p, .project-info p { color: #666; font-size: 0.95rem; }
+.service-card:hover { border-bottom: 4px solid #2ecc71; }
+
+.icon { font-size: 3.5rem; margin-bottom: 1.5rem; }
+
+.service-card h3, .project-info h3 { 
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 700;
+    margin-bottom: 0.8rem; 
+    color: #2c3e50; 
+    font-size: 1.4rem;
+}
+
+.service-card p, .project-info p { 
+    color: #555; 
+    font-size: 1rem; 
+}
 
 .project-card img {
     width: 100%;
     height: 250px;
     object-fit: cover;
     display: block;
+    transition: transform 0.5s ease;
 }
-.project-info { padding: 1.5rem; border: 1px solid #eee; border-top: none; }
+
+/* Эффект зума картинки при наведении */
+.project-card:hover img {
+    transform: scale(1.05);
+}
+
+.project-info { padding: 2rem; border-top: none; }
 
 /* ========================
    6. ПОДВАЛ (FOOTER)
@@ -238,11 +280,9 @@ body {
    7. АДАПТИВ (MOBILE)
    ======================== */
 @media (max-width: 768px) {
-    
-    /* --- СМЕНА КАРТИНКИ ДЛЯ ТЕЛЕФОНА --- */
     .hero {
-        background-image: url('images/hero-mobile.webp'); /* Подставляем мобильную версию */
-        height: 60vh; /* На телефоне можно сделать баннер чуть пониже (опционально) */
+        background-image: url('images/hero-mobile.webp'); 
+        height: 65vh; 
     }
 
     .header .container {
@@ -254,11 +294,20 @@ body {
         margin: 15px 0;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
     }
 
-    .nav a { margin-left: 0; display: block; padding: 5px; font-size: 1.1rem; }
-    .lang-switch { margin-left: 0; margin-top: 10px; }
-    .hero h1 { font-size: 2rem; }
-    .hero p { font-size: 1rem; padding: 0 10px; }
+    .nav a { 
+        margin-left: 0; 
+        display: block; 
+        padding: 5px; 
+        font-size: 1.1rem; 
+    }
+
+    .hero h1 { font-size: 2.2rem; }
+    .hero p { font-size: 1.1rem; padding: 0 10px; }
+    
+    .services .container, .portfolio .container {
+        padding: 1.5rem; /* Меньше отступы на телефоне */
+    }
 }
